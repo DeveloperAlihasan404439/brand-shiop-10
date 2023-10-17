@@ -10,7 +10,7 @@ const MainLayout = () => {
     /> */
   }
   return (
-    <div className="font-poppins">
+    <div className="font-poppins text-black">
       <div className="pb-[4.5%]">
         <Navber />
       </div>
