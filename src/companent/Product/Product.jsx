@@ -1,6 +1,7 @@
 import Rating from "react-rating";
 import { BsStarFill,BsStarHalf } from "react-icons/bs";
 import "./Product.css";
+import { Link } from "react-router-dom";
 const Product = ({ products }) => {
   const { _id, image, name, price, rating, brand_name, type } = products;
   const hendelUpdated = (id) => {
@@ -30,9 +31,11 @@ const Product = ({ products }) => {
         </div>
         <div className="flex gap-6 justify-between items-center mt-4">
           <div className=" w-[50%]">
+            <Link to ={`/products/${_id}`}>
             <button className="btn">
               <span> Details button</span>
             </button>
+            </Link>
           </div>
           <div className=" w-[50%]">
             <button onClick={() => hendelUpdated(_id)} className="btn">
