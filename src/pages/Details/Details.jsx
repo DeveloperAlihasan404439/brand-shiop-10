@@ -1,13 +1,36 @@
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import technology from "../../assets/technology .jpg";
 import "./Details.css";
+import Swal from "sweetalert2";
 const Details = () => {
-  const products = useLoaderData();
+  const productsLoder = useLoaderData();
   const { id } = useParams();
-  const product = products?.find((product) => product._id === id);
+  const product = productsLoder?.find((product) => product._id === id);
 
   const { image, name, brand_name, description, price, type } = product;
-  console.log(id, product);
+  const hendelAddToCrat = ()=>{
+    console.log(product);
+    fetch('http://localhost:5000/myCrat',{
+        method: 'post',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify(product)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.insertedId){
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'Success the product Add To Crat',
+                showConfirmButton: false,
+                timer: 1500
+              })
+
+        }
+    })
+  }
   return (
     <div>
       <div className="h-[70vh] relative">
@@ -30,7 +53,11 @@ const Details = () => {
       </div>
       <div className="w-11/12 mx-auto my-5 md:my-10 md:flex justify-between gap-5 items-center ">
         <div className="md:w-[50%]">
-          <img src={image} alt="" className="rounded-xl h-[300px] md:h-[400px]" />
+          <img
+            src={image}
+            alt=""
+            className="rounded-xl h-[300px] md:h-[400px]"
+          />
         </div>
         <div className="md:w-[50%] pt-5 md:pt-0 text-center md:text-left">
           <h1 className="text-xl md:text-3xl uppercase">{name}</h1>
@@ -38,12 +65,21 @@ const Details = () => {
           <h1 className="text-lg md:text-xl">Producte Name {brand_name}</h1>
           <h1 className="text-lg md:text-xl py-1">Producte Price : ${price}</h1>
           <h1 className="text-lg md:text-xl">Producte Type {type}</h1>
-          <div className="mt-4 md:w-5/12">
-            <Link to = '/'>
-              <button className="btn">
-                <span>Go To Home</span>
-              </button>
-            </Link>
+          <div className="mt-4 flex items-center gap-6">
+            <div className="md:w-5/12">
+              <Link to="/">
+                <button className="btn">
+                  <span>Go To Home</span>
+                </button>
+              </Link>
+            </div>
+            <div className="md:w-5/12">
+              <Link onClick={hendelAddToCrat}>
+                <button className="btn">
+                  <span>Add to Crat</span>
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

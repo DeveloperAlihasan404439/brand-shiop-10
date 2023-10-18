@@ -16,7 +16,7 @@ const Navber = () => {
     <>
       <NavLink to = '/'>Home</NavLink>
       <NavLink to = '/addProduct'>Add Product</NavLink>
-      <NavLink>My Cart</NavLink>
+      <NavLink to = "/myCrat">My Cart</NavLink>
       <NavLink>Login</NavLink>
     </>)
   return (
