@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2'
 import "./AddProduct.css";
 const AddProduct = () => {
     const addProduct = e =>{
@@ -5,13 +6,35 @@ const AddProduct = () => {
         const target = e.target;
         const name = target.name.value;
         const image = target.image.value;
-        const brand = target.brand.value;
+        const brand_name = target.brand.value;
         const type = target.type.value;
         const price = target.price.value;
         const reting = target.reting.value;
         const description = target.description.value;
-        const products = {name, image, brand, type, price,reting, description}
+        const products = {name, image, brand_name, type, price,reting, description}
         console.log(products);
+        fetch('http://localhost:5000/products', {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body:JSON.stringify(products)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.insertedId){
+                e.target.reset()
+                console.log(data);
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Success add the product',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+
+            }
+        })
     }
   return (
     <div className="py-10 w-11/12 mx-auto bg-base-300 h-[91vh] flex items-center">
@@ -106,7 +129,6 @@ const AddProduct = () => {
                 className="input-cal p-4 outline-none input-base w-full"
               ></textarea>
             </div>
-            {/* <input type="submit" value="Add product" className="input-cal input-base w-full"/> */}
             <div className="mt-4">
               <button className="btn">
                 <span> Add product</span>
