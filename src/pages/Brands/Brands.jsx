@@ -11,7 +11,7 @@ const Brands = () => {
   return (
     <div className="bg-base-300 py-6 md:py-10">
       <div className="w-11/12 mx-auto">
-        <h1 className="text-3xl text-center pb-4">Technology Trends for 2023 or The <br /> <span className="text-orange-500">Future of Technology...</span></h1>
+        <h1 className="text-4xl text-center pb-4 font-rancho">Technology Trends for 2023 or The <br /> <span className="text-orange-500">Future of Technology...</span></h1>
         <p className="md:w-8/12 mx-auto text-center ">
           In 2023, the technology landscape will be shaped by several key
           trends. These include the rise of AI and automation, increased focus

@@ -14,8 +14,8 @@ const Navber = () => {
   const [open, setOpen] = useState(true);
   const navber = (
     <>
-      <NavLink>Home</NavLink>
-      <NavLink>Add Product</NavLink>
+      <NavLink to = '/'>Home</NavLink>
+      <NavLink to = '/addProduct'>Add Product</NavLink>
       <NavLink>My Cart</NavLink>
       <NavLink>Login</NavLink>
     </>)
