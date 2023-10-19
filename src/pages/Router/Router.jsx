@@ -5,6 +5,7 @@ import AddProduct from "../AddProduct/AddProduct"
 import Products from "../Products/Products"
 import Details from "../Details/Details"
 import MyCrat from "../MyCrat/MyCrat"
+import UpdateCrat from "../UpdateCrat/UpdateCrat"
 
 export const router = createBrowserRouter([
     {
@@ -33,6 +34,11 @@ export const router = createBrowserRouter([
                 path: '/myCrat',
                 element: <MyCrat/>,// private/protected route.
                 loader: () => fetch('http://localhost:5000/myCrat')
+            },
+            {
+                path: '/UpdateProduct/:id',
+                element: <UpdateCrat/>,// private/protected route.
+                loader: () => fetch('http://localhost:5000/products')
             },
         ]
     }

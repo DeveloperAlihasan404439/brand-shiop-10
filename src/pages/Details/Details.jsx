@@ -67,9 +67,9 @@ const Details = () => {
           <h1 className="text-lg md:text-xl">Producte Type {type}</h1>
           <div className="mt-4 flex items-center gap-6">
             <div className="md:w-5/12">
-              <Link to="/">
+              <Link to={`/brandProducts/${brand_name}`}>
                 <button className="btn">
-                  <span>Go To Home</span>
+                  <span>Go To Product</span>
                 </button>
               </Link>
             </div>

@@ -1,12 +1,9 @@
 import Rating from "react-rating";
-import { BsStarFill,BsStarHalf } from "react-icons/bs";
+import { BsStarFill, BsStarHalf } from "react-icons/bs";
 import "./Product.css";
 import { Link } from "react-router-dom";
 const Product = ({ products }) => {
   const { _id, image, name, price, rating, brand_name, type } = products;
-  const hendelUpdated = (id) => {
-    console.log(id);
-  };
   return (
     <div className="shadow-xl rounded-xl">
       <img src={image} alt="Shoes" className="rounded-t-xl h-[300px] w-full" />
@@ -23,7 +20,7 @@ const Product = ({ products }) => {
           <p>Type {rating}</p>
           <Rating
             placeholderRating={rating}
-            emptySymbol={< BsStarHalf/>}
+            emptySymbol={<BsStarHalf />}
             placeholderSymbol={<BsStarFill />}
             fullSymbol={<BsStarFill />}
             className="text-orange-600"
@@ -31,16 +28,18 @@ const Product = ({ products }) => {
         </div>
         <div className="flex gap-6 justify-between items-center mt-4">
           <div className=" w-[50%]">
-            <Link to ={`/products/${_id}`}>
-            <button className="btn">
-              <span> Details button</span>
-            </button>
+            <Link to={`/products/${_id}`}>
+              <button className="btn">
+                <span> Details button</span>
+              </button>
             </Link>
           </div>
           <div className=" w-[50%]">
-            <button onClick={() => hendelUpdated(_id)} className="btn">
-              <span>Update button</span>
-            </button>
+            <Link to = {`/UpdateProduct/${_id}`}>
+              <button className="btn">
+                <span>Update button</span>
+              </button>
+            </Link>
           </div>
         </div>
       </div>

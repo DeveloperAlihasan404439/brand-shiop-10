@@ -1,41 +1,50 @@
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import "./AddProduct.css";
+import { useState } from "react";
 const AddProduct = () => {
-    const addProduct = e =>{
-        e.preventDefault()
-        const target = e.target;
-        const name = target.name.value;
-        const image = target.image.value;
-        const brand_name = target.brand.value;
-        const type = target.type.value;
-        const price = target.price.value;
-        const reting = target.reting.value;
-        const description = target.description.value;
-        const products = {name, image, brand_name, type, price,reting, description}
-        console.log(products);
-        fetch('http://localhost:5000/products', {
-            method: 'post',
-            headers: {
-                "Content-Type": "application/json",
-              },
-            body:JSON.stringify(products)
-        })
-        .then(res => res.json())
-        .then(data => {
-            if(data.insertedId){
-                e.target.reset()
-                console.log(data);
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Success add the product',
-                    showConfirmButton: false,
-                    timer: 1500
-                  })
-
-            }
-        })
-    }
+  const [selectedBrandValue, setSelectedBrandValue] = useState('')
+  console.log(selectedBrandValue);
+  const addProduct = (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const name = target.name.value;
+    const image = target.image.value;
+    const brand_name = selectedBrandValue;
+    const type = target.type.value;
+    const price = target.price.value;
+    const reting = target.reting.value;
+    const description = target.description.value;
+    const products = {
+      name,
+      image,
+      brand_name,
+      type,
+      price,
+      reting,
+      description,
+    };
+    fetch("http://localhost:5000/products", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(products),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          e.target.reset();
+          console.log(data);
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "Success add the product",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
   return (
     <div className="py-10 w-11/12 mx-auto bg-base-300 h-[91vh] flex items-center">
       <div>
@@ -78,14 +87,29 @@ const AddProduct = () => {
             </div>
             <div className="grid grid-cols-2 gap-4 py-4">
               <div className="relative w-full">
-                <input
-                  className="input-cal input-base w-full "
+                <select
                   id="input"
-                  placeholder=""
-                  type="text"
                   name="brand"
-                />
+                  className="input-cal input-base w-full "
+                  value={selectedBrandValue}
+                  onChange={(e) => setSelectedBrandValue(e.target.value)}
+                >
+                  <option>Select Option Brand</option>
+                  <option value="Google" >Google</option>
+                  <option value="Nokia">Nokia</option>
+                  <option value="Intel">Intel</option>
+                  <option value="Sony">Sony</option>
+                  <option value="Apple">Apple</option>
+                  <option value="Samsung">Samsung</option>
+                </select>
                 <label id="label-input">Brand Name</label>
+                {/* <select
+                  
+                >
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                  <option value="option3">Option 3</option>
+                </select> */}
               </div>
               <div className="relative w-full">
                 <input

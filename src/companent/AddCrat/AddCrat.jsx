@@ -1,6 +1,6 @@
 import './AddCrat.css'
 const AddCrat = ({ myCrat,hendelDelete }) => {
-  const { image, name, price } = myCrat;
+  const {_id, image, name, price } = myCrat;
   return (
     <div>
       <div className="card bg-base-200 shadow-xl p-4">
@@ -9,7 +9,7 @@ const AddCrat = ({ myCrat,hendelDelete }) => {
           <h2 className="card-title">Name : {name}</h2>
           <h1 className="text-xl">Price : ${price}</h1>
           <div className=" mt-4">
-            <button onClick={() => hendelDelete()} className="btn">
+            <button onClick={() => hendelDelete(_id)} className="btn">
               <span>Delete button</span>
             </button>
           </div>
