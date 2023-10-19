@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   Menu,
   MenuButton,
@@ -9,15 +9,15 @@ import {
   MenuItem,
   MenuDivider,
 } from '@chakra-ui/react'
+import { AuthContext } from "../../../pages/AuthProvider/AuthProvider";
 const Navber = () => {
-    const user = null;
   const [open, setOpen] = useState(true);
+  const {user,userLogOut} = useContext(AuthContext)
   const navber = (
     <>
       <NavLink to = '/'>Home</NavLink>
       <NavLink to = '/addProduct'>Add Product</NavLink>
       <NavLink to = "/myCrat">My Cart</NavLink>
-      <NavLink>Login</NavLink>
     </>)
   return (
     <div className="fixed z-30 w-[100%] bg-gradient-to-l from-[#0242A2] to-[#028A98]  border-b-2 border-[#1721319f]">
@@ -64,12 +64,12 @@ const Navber = () => {
                   <h1 className="text-2xl">{user.displayName}</h1>
                   <h1 className="text-sm">{user.email}</h1>
                   <hr />
-                  <NavLink onClick={logOutUser}>Log Out</NavLink>
+                  <NavLink onClick={userLogOut}>Log Out</NavLink>
                   
                   </>
                 :<>
-                  <NavLink to="/registor">Registor</NavLink>
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/singup">Registor</NavLink>
+                  <NavLink to="/singin">Login</NavLink>
                 </>
                 }
                 </ul>
@@ -120,16 +120,16 @@ const Navber = () => {
                   <MenuItem>{user.email}</MenuItem>
                   <MenuDivider />
                 <MenuItem>
-                  <NavLink onClick={logOutUser}>Log Out</NavLink>
+                  <NavLink onClick={userLogOut}>Log Out</NavLink>
                 </MenuItem>
                   
                   </>
                 :<>
                 <MenuItem>
-                  <NavLink to="/registor">Registor</NavLink>
+                  <NavLink to="/singup">Registor</NavLink>
                 </MenuItem>
                 <MenuItem>
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/singin">Login</NavLink>
                 </MenuItem>
                 </>
                 }

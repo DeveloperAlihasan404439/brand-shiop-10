@@ -6,6 +6,9 @@ import Products from "../Products/Products"
 import Details from "../Details/Details"
 import MyCrat from "../MyCrat/MyCrat"
 import UpdateCrat from "../UpdateCrat/UpdateCrat"
+import SingUp from "../AuthProvider/SingUp/SingUp"
+import SingIn from "../AuthProvider/SingIn/SingIn"
+import PriveatRouter from "../PriveatRouter/PriveatRouter"
 
 export const router = createBrowserRouter([
     {
@@ -27,18 +30,26 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/products/:id',
-                element: <Details/>,// private/protected route.
+                element: <PriveatRouter><Details/></PriveatRouter>,// private/protected route.
                 loader: () => fetch('http://localhost:5000/products')
             },
             {
                 path: '/myCrat',
-                element: <MyCrat/>,// private/protected route.
+                element: <PriveatRouter><MyCrat/></PriveatRouter>,// private/protected route.
                 loader: () => fetch('http://localhost:5000/myCrat')
             },
             {
                 path: '/UpdateProduct/:id',
-                element: <UpdateCrat/>,// private/protected route.
+                element: <PriveatRouter><UpdateCrat/></PriveatRouter>,// private/protected route.
                 loader: () => fetch('http://localhost:5000/products')
+            },
+            {
+                path: '/singup',
+                element: <SingUp/>
+            },
+            {
+                path: '/singin',
+                element: <SingIn/>
             },
         ]
     }
