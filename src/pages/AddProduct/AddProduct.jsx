@@ -3,7 +3,6 @@ import "./AddProduct.css";
 import { useState } from "react";
 const AddProduct = () => {
   const [selectedBrandValue, setSelectedBrandValue] = useState('')
-  console.log(selectedBrandValue);
   const addProduct = (e) => {
     e.preventDefault();
     const target = e.target;
@@ -12,7 +11,7 @@ const AddProduct = () => {
     const brand_name = selectedBrandValue;
     const type = target.type.value;
     const price = target.price.value;
-    const reting = target.reting.value;
+    const rating = target.reting.value;
     const description = target.description.value;
     const products = {
       name,
@@ -20,7 +19,7 @@ const AddProduct = () => {
       brand_name,
       type,
       price,
-      reting,
+      rating,
       description,
     };
     fetch("http://localhost:5000/products", {
@@ -34,7 +33,6 @@ const AddProduct = () => {
       .then((data) => {
         if (data.insertedId) {
           e.target.reset();
-          console.log(data);
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -103,13 +101,6 @@ const AddProduct = () => {
                   <option value="Samsung">Samsung</option>
                 </select>
                 <label id="label-input">Brand Name</label>
-                {/* <select
-                  
-                >
-                  <option value="option1">Option 1</option>
-                  <option value="option2">Option 2</option>
-                  <option value="option3">Option 3</option>
-                </select> */}
               </div>
               <div className="relative w-full">
                 <input
