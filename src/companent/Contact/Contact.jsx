@@ -1,6 +1,38 @@
 import { FaFacebookF,FaGithub,FaGoogle,FaTwitter,FaInstagram } from 'react-icons/fa6';
 import "./Contact.css";
+import Swal from 'sweetalert2';
 const Contact = () => {
+  const hendelContact = e =>{
+    e.preventDefault()
+    const target = e.target;
+    const name = target.name.value;
+    const phone = target.phone.value;
+    const email = target.email.value;
+    const website_url = target.website_url.value;
+    const message = target.message.value;
+    const contact = {name, phone, email, website_url, message}
+    console.log(contact);
+    fetch('http://localhost:5000/contact',{
+      method: 'post',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(contact)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.insertedId){
+        e.target.reset()
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Contact message in the successfull',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    })
+  }
   return (
     <div
       className="my-10 py-20"
@@ -53,17 +85,17 @@ const Contact = () => {
             </ul>
           </div>
         </div>
-        <form className="form w-full md:w-[50%] border-4 mt-5 md:mt-0 border-gradient-to-r from-red-600 to-orange-500">
+        <form onSubmit={hendelContact} className="form w-full md:w-[50%] border-4 mt-5 md:mt-0 border-gradient-to-r from-red-600 to-orange-500">
           <h1 className="text-white text-2xl">Fill The Contact Form</h1>
           <div className="md:flex gap-5 w-full">
-            <input className="input" type="text" placeholder="Your Name" />
-            <input className="input" type="text" placeholder="Phon" />
+            <input className="input" type="text" name='name' placeholder="Your Name" required/>
+            <input className="input" type="text" name='phone' placeholder="Phon" required/>
           </div>
           <div className="md:flex gap-5 w-full">
-            <input className="input" type="email" placeholder="Email Address" />
-            <input className="input" type="text" placeholder="Website URL" />
+            <input className="input" type="email" name='email' placeholder="Email Address" required/>
+            <input className="input" type="text" name='website_url' placeholder="Website URL" required/>
           </div>
-          <textarea className="textarea" placeholder="Enter message"></textarea>
+          <textarea className="textarea" name='message' placeholder="Enter message" required></textarea>
           <center>
             <button className="button">Submit</button>
           </center>

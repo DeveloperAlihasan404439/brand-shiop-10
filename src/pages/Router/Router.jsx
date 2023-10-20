@@ -9,11 +9,14 @@ import UpdateCrat from "../UpdateCrat/UpdateCrat"
 import SingUp from "../AuthProvider/SingUp/SingUp"
 import SingIn from "../AuthProvider/SingIn/SingIn"
 import PriveatRouter from "../PriveatRouter/PriveatRouter"
+import Error from "../Error/Error"
+import UserData from "../UserData/UserData"
 
 export const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout/>,
+        errorElement: <Error/>,
         children: [
             {
                 path: '/',
@@ -50,6 +53,11 @@ export const router = createBrowserRouter([
             {
                 path: '/singin',
                 element: <SingIn/>
+            },
+            {
+                path: '/userData',
+                element: <UserData/>,
+                loader: ()=>fetch('http://localhost:5000/contact')
             },
         ]
     }

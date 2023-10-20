@@ -2,12 +2,14 @@ import { Link, useLoaderData, useParams } from "react-router-dom";
 import technology from "../../assets/technology .jpg";
 import "./Details.css";
 import Swal from "sweetalert2";
+import { useState } from "react";
 const Details = () => {
   const productsLoder = useLoaderData();
   const { id } = useParams();
   const product = productsLoder?.find((product) => product._id === id);
 
   const { image, name, brand_name, description, price, type } = product;
+  const [showProducts, setShowProducts] = useState(true)
   const hendelAddToCrat = ()=>{
     console.log(product);
     fetch('http://localhost:5000/myCrat',{
@@ -73,12 +75,14 @@ const Details = () => {
                 </button>
               </Link>
             </div>
-            <div className="md:w-5/12">
-              <Link onClick={hendelAddToCrat}>
-                <button className="btn">
+            <div onClick={()=>setShowProducts(!showProducts)} className="md:w-5/12">
+              {
+                showProducts?<Link onClick={hendelAddToCrat}>
+                <button className="btn" disabled={showProducts}>
                   <span>Add to Crat</span>
                 </button>
-              </Link>
+              </Link>:''
+              }
             </div>
           </div>
         </div>

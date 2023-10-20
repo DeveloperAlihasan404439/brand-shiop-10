@@ -33,6 +33,7 @@ const AddProduct = () => {
       .then((data) => {
         if (data.insertedId) {
           e.target.reset();
+          
           Swal.fire({
             position: "top-center",
             icon: "success",
@@ -144,8 +145,8 @@ const AddProduct = () => {
                 className="input-cal p-4 outline-none input-base w-full"
               ></textarea>
             </div>
-            <div className="mt-4">
-              <button className="btn">
+            <div  className="mt-4">
+              <button  className="btn">
                 <span> Add product</span>
               </button>
             </div>
