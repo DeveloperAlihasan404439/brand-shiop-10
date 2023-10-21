@@ -6,21 +6,21 @@ import "./SingIn.css";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 const SingIn = () => {
-  const { userLogin, googleUser,githubUser } = useContext(AuthContext);
+  const { userLogin, googleUser, githubUser } = useContext(AuthContext);
   const [textError, setTextError] = useState("");
   const providerGoogle = new GoogleAuthProvider();
   const providerGithub = new GithubAuthProvider();
-  const naviget = useNavigate()
-  const location = useLocation()
+  const naviget = useNavigate();
+  const location = useLocation();
   const hendelSingOut = (e) => {
     e.preventDefault();
     setTextError("");
     const target = e.target;
-    const name = target.name.value;
     const email = target.email.value;
-    userLogin(name, email)
+    const password = target.password.value;
+    userLogin( email,password)
       .then(() => {
-        naviget(location?.state? location.state: '/')
+        naviget(location?.state ? location.state : "/");
       })
       .catch((error) => {
         setTextError(error.message);
@@ -29,7 +29,7 @@ const SingIn = () => {
   const hendelGoogle = () => {
     googleUser(providerGoogle)
       .then(() => {
-        naviget(location?.state? location.state: '/')
+        naviget(location?.state ? location.state : "/");
       })
       .catch((error) => {
         setTextError(error.message);
@@ -38,52 +38,53 @@ const SingIn = () => {
   const hendelGithub = () => {
     githubUser(providerGithub)
       .then(() => {
-        naviget(location?.state? location.state: '/')
+        naviget(location?.state ? location.state : "/");
       })
       .catch((error) => {
         setTextError(error.message);
       });
   };
   return (
-    <div className="login-box w-[100%] md:w-[50%] lg:w-[30%] ">
-      <h1 className="mb-10 text-white text-center text-2xl font-rancho">
-        Sing In
-      </h1>
-      <form onSubmit={hendelSingOut}>
-        <div className="user-box">
-          <input type="email" name="email" required="" />
-          <label>Email</label>
-        </div>
-        <div className="user-box">
-          <input type="password" name="password" required="" />
-          <label>Password</label>
-        </div>
+    <div className="w-11/12 mx-auto py-4">
+      <form
+        onSubmit={hendelSingOut}
+        className="form w-full md:w-[50%] mx-auto border-4 mt-5 md:mt-0 border-gradient-to-r from-red-600 to-orange-500"
+      >
+        <h1 className="text-white text-2xl">Sing In </h1>
+        <input
+          className="input"
+          type="email"
+          name="email"
+          placeholder="Email Address"
+          required
+        />
+        <input
+          className="input"
+          type="password"
+          name="password"
+          placeholder="password"
+          required
+        />
         {textError ? <p className="text-red-600 mb-4">{textError}</p> : ""}
-        <div  onClick={hendelGoogle} className="flex w-full">
-          <div className="grid h-20 flex-grow card bg-[#024EA0] rounded-box place-items-center">
-            <img src={google} alt="" className="w-[50px]" />
+        <center>
+          <button className="button">SingIn</button>
+        </center>
+        <div className="flex w-full text-white py-5">
+          <div onClick={hendelGoogle} className="grid h-20 flex-grow card bg-[#022150] rounded-box place-items-center">
+            <img src={google} alt="" className="w-[50px]"/>
           </div>
-          <div className="divider divider-horizontal text-white">OR</div>
-          <div
-            onClick={hendelGithub}
-            className="grid h-20 flex-grow card bg-[#024EA0] rounded-box place-items-center"
-          >
-            <img src={github} alt="" className="w-[50px]" />
+          <div className="divider divider-horizontal">OR</div>
+          <div onClick={hendelGithub} className="grid h-20 flex-grow card bg-[#022150] rounded-box place-items-center">
+            <img src={github} alt="" className="w-[50px]"/>
           </div>
         </div>
-        <div className="text-center">
-          <button>
-            Sing In
-            <span></span>
-          </button>
-        </div>
-        <p className="text-xl text-white pt-5">
-            Do not have account{" "}
-            <Link to="/registor" className="text-orange-500 hover:underline">
-              <br />
-              Please Registor
-            </Link>
-          </p>
+        <p className="text-xl text-white">
+          Donot have Account{" "}
+          <Link to="/singup" className="text-orange-500 hover:underline">
+            {" "}
+            <br /> Please Sing Up
+          </Link>
+        </p>
       </form>
     </div>
   );

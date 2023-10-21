@@ -22,7 +22,7 @@ const AddProduct = () => {
       rating,
       description,
     };
-    fetch("http://localhost:5000/products", {
+    fetch("https://brand-shop-two.vercel.app/products", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -45,14 +45,14 @@ const AddProduct = () => {
       });
   };
   return (
-    <div className="py-10 w-11/12 mx-auto bg-base-300 h-[91vh] flex items-center">
+    <div className="py-10 w-11/12 mx-auto md:h-[91vh] flex items-center">
       <div>
         <div>
-          <h1 className="text-center text-xl md:text-3xl">Add Product</h1>
+          <h1 className="text-center text-xl md:text-3xl mt-6 md:mt-0">Add Product</h1>
           <h1 className="text-center font-rancho  text-4xl py-2">
             Technology Brands Innovative Products and Solutions
           </h1>
-          <p className="w-8/12 text-center mx-auto pb-6">
+          <p className="lg:w-8/12 text-center mx-auto pb-6">
             Discover a world of cutting-edge technology with Technology Brands
             innovative products and solutions. From state-of-the-art gadgets to
             groundbreaking software, we bring you the future today. Stay ahead
@@ -60,10 +60,10 @@ const AddProduct = () => {
             innovators.
           </p>
         </div>
-        <div className="w-7/12 mx-auto ">
+        <div className="lg:w-7/12 mx-auto ">
           <form onSubmit={addProduct}>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="relative w-full">
+            <div className="md:grid grid-cols-2 gap-4">
+              <div className="relative w-full mb-4 md:mb-0">
                 <input
                   className="input-cal input-base w-full "
                   id="input"
@@ -84,8 +84,8 @@ const AddProduct = () => {
                 <label id="label-input">Image URL</label>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 py-4">
-              <div className="relative w-full">
+            <div className="md:grid grid-cols-2 gap-4 py-4">
+              <div className="relative w-full mb-4 md:mb-0">
                 <select
                   id="input"
                   name="brand"
@@ -114,10 +114,10 @@ const AddProduct = () => {
                 <label id="label-input">Type </label>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="md:grid grid-cols-2 gap-4">
               <div className="relative w-full">
                 <input
-                  className="input-cal input-base w-full "
+                  className="input-cal input-base w-full mb-4 md:mb-0"
                   id="input"
                   placeholder=""
                   type="text"

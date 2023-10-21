@@ -26,15 +26,15 @@ const Product = ({ products }) => {
             className="text-orange-600"
           />
         </div>
-        <div className="flex gap-6 justify-between items-center mt-4">
-          <div className=" w-[50%]">
+        <div className="md:flex gap-6 justify-between items-center mt-4">
+          <div className=" md:w-[50%]">
             <Link to={`/products/${_id}`}>
               <button className="btn">
                 <span> Details button</span>
               </button>
             </Link>
           </div>
-          <div className=" w-[50%]">
+          <div className=" md:w-[50%] pt-5 md:pt-0">
             <Link to = {`/UpdateProduct/${_id}`}>
               <button className="btn">
                 <span>Update button</span>

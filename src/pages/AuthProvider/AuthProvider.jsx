@@ -13,9 +13,9 @@ const auth = getAuth(app)
         setLoader(true)
           return  createUserWithEmailAndPassword(auth, email, pass)
     }
-    const userLogin = (email, pass) =>{
+    const userLogin = (email, password) =>{
         setLoader(true)
-        return signInWithEmailAndPassword(auth, email, pass)
+        return signInWithEmailAndPassword(auth, email, password)
     }
     const googleUser = proviterGoogle =>{
         setLoader(true)
@@ -31,6 +31,7 @@ const auth = getAuth(app)
 
     useEffect(()=>{
         const unSubscrip = onAuthStateChanged(auth, crrent =>{
+            console.log("Observing on", crrent);
             setUser(crrent)
             setLoader(false)
         })

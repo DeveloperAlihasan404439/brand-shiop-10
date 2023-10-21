@@ -12,7 +12,7 @@ const Contact = () => {
     const message = target.message.value;
     const contact = {name, phone, email, website_url, message}
     console.log(contact);
-    fetch('http://localhost:5000/contact',{
+    fetch('https://brand-shop-two.vercel.app/contact',{
       method: 'post',
       headers: {
         "Content-Type": "application/json",

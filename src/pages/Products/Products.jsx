@@ -122,10 +122,10 @@ const Products = () => {
             </Swiper>
           </div>
           <div className="w-11/12 mx-auto">
-            <h1 className="text-xl font-rancho md:text-3xl pt-5 md:pt-10 text-center">
+            <h1 className="text-xl font-rancho md:text-3xl pt-5 md:pt-10 text-center ">
               Upgrade Your Tech Arsenal with Our Products
             </h1>
-            <p className="text-lg md:text-xl md:w-7/12 mx-auto text-center">
+            <p className="text-lg md:text-xl md:w-7/12 mx-auto text-center ">
               iscover the latest in tech innovation at our Products Page.
               Explore cutting-edge gadgets, from smartphones to smart home
               devices. Elevate your digital lifestyle today

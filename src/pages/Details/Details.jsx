@@ -12,7 +12,7 @@ const Details = () => {
   const [showProducts, setShowProducts] = useState(true)
   const hendelAddToCrat = ()=>{
     console.log(product);
-    fetch('http://localhost:5000/myCrat',{
+    fetch('https://brand-shop-two.vercel.app/myCrat',{
         method: 'post',
         headers: {
             "Content-Type": "application/json",

@@ -4,15 +4,15 @@ import BrandCrad from "../../companent/BrandCrad/BrandCrad";
 const Brands = () => {
   const [brands, setBrands] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/brands")
+    fetch("https://brand-shop-two.vercel.app/brands")
       .then((res) => res.json())
       .then((data) => setBrands(data));
   }, []);
   return (
-    <div className="bg-base-300 py-6 md:py-10">
+    <div className=" py-6 md:py-10">
       <div className="w-11/12 mx-auto">
-        <h1 className="text-4xl text-center pb-4 font-rancho">Technology Trends for 2023 or The <br /> <span className="text-orange-500">Future of Technology...</span></h1>
-        <p className="md:w-8/12 mx-auto text-center ">
+        <h2 className="text-4xl text-center pb-4 font-rancho">Technology Trends for 2023 or The <br /> <span className="text-orange-500">Future of Technology...</span></h2>
+        <p className="md:w-8/12 mx-auto text-center">
           In 2023, the technology landscape will be shaped by several key
           trends. These include the rise of AI and automation, increased focus
           on cybersecurity, advancements in quantum computing, the proliferation

@@ -9,8 +9,8 @@ const SingUp = () => {
   const [textError, setTextError] = useState("");
   const { userCreate, userLogOut } = useContext(AuthContext);
   const auth = getAuth(app);
-  const location = useLocation()
-  const naviget = useNavigate()
+  const location = useLocation();
+  const naviget = useNavigate();
   const hendelSingup = (e) => {
     e.preventDefault();
     const target = e.target;
@@ -26,15 +26,18 @@ const SingUp = () => {
       return setTextError("Password most be one uppercase ");
     } else if (!/[0-9]/.test(password)) {
       return setTextError("Password most be one Number ");
+    } else if (!/[!@#$%^&*]/.test(password)) {
+      return setTextError("Password most be one Spaciel ");
     }
     userCreate(email, password)
-      .then(() => {
+      .then((result) => {
+        console.log(result.user);
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photo,
         })
           .then(() => {
-            userLogOut();
+           
             e.target.reset();
             Swal.fire({
               position: "top-center",
@@ -43,7 +46,8 @@ const SingUp = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-          naviget(location?.state? location.state: '/singin')
+            userLogOut();
+            naviget(location?.state ? location.state : "/singin");
           })
           .catch((error) => {
             setTextError(error.message);
@@ -56,43 +60,59 @@ const SingUp = () => {
 
   return (
     <div>
-      <div className="login-box w-[100%] md:w-[50%] lg:w-[30%] ">
-        <h1 className="mb-10 text-white text-center text-xl font-rancho">
-          Register on for Exclusive Access <br /> and Benefits Today{" "}
-        </h1>
-        <form onSubmit={hendelSingup}>
-          <div className="user-box">
-            <input type="text" name="name" required="" />
-            <label>Name</label>
-          </div>
-          <div className="user-box">
-            <input type="email" name="email" required="" />
-            <label>Email</label>
-          </div>
-          <div className="flex justify-between items-center gap-4">
-            <div className="user-box">
-              <input type="password" name="password" required="" />
-              <label>Password</label>
-            </div>
-              <div className="user-box">
-                <input type="password" name="confirm" required="" />
-                <label>confirm</label>
-              </div>
-          </div>
-          <div className="user-box">
-            <input type="text" name="photo" required="" />
-            <label>Photo URL</label>
-          </div>
-          {textError ? <p className="text-red-600">{textError}</p> : ""}
-
-          <div className="text-center">
-            <button>
-              Register
-              <span></span>
-            </button>
-          </div>
+      <div className="w-11/12 mx-auto py-4">
+        <form
+          onSubmit={hendelSingup}
+          className="form w-full md:w-[50%] mx-auto border-4 mt-5 md:mt-0 border-gradient-to-r from-red-600 to-orange-500"
+        >
+          <h1 className="text-white text-2xl">Sing Up</h1>
+          <input
+            className="input"
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            className="input"
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required
+          />
+          <input
+            className="input"
+            type="password"
+            name="password"
+            placeholder="password"
+            required
+          />
+          <input
+            className="input"
+            type="password"
+            name="confirm"
+            placeholder="confirm"
+          />
           
-        <p className="text-xl text-white pt-5">Already have an account <Link to="/login" className="text-orange-500 hover:underline"> <br /> Please Login</Link></p>
+          <input
+            className="input"
+            type="text"
+            name="photo"
+            placeholder="Photo URL"
+            required
+          />
+          
+        {textError ? <p className="text-red-600 mb-4">{textError}</p> : ""}
+          <center>
+            <button className="button">Sing Up</button>
+          </center>
+          <p className="text-xl text-white pt-5">
+            Already have an account{" "}
+            <Link to="/singin" className="text-orange-500 hover:underline">
+              {" "}
+              <br /> Please Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>
